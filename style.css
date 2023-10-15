@@ -1,0 +1,267 @@
+/* Google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap");
+
+/* -----------------------*/
+/* Custom Properties      */
+/* ---------------------- */
+:root {
+  /* colors */
+  --bg: 120deg, #a1c4fd 0%, #c2e9fb 100%;
+  --orange: #fddaa1;
+  --text: #1f1f29;
+  --white: #f5f5fa;
+  /* font-sizes */
+  --fs-normal: 1rem;
+  --fs-title: min(2.5rem, 6vw);
+  /* font-weigths */
+  --fw-regular: 400;
+}
+/* -----------------------*/
+/* Normalize              */
+/* ---------------------- */
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  /* for the carousel */
+  scrollbar-color: transparent transparent; /* thumb and track color */
+  scrollbar-width: 0px;
+  -ms-overflow-style: none;
+}
+*::-webkit-scrollbar {
+  width: 0;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+  border: none;
+}
+/* -- */
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  margin: 0;
+  padding: 0;
+}
+main {
+  display: block;
+}
+button {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  text-transform: none;
+  -webkit-appearance: button;
+  background: transparent;
+  border: none;
+}
+button::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+button:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-weight: 400;
+}
+img {
+  max-width: 100%;
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: min(var(--fs-normal), 6vw);
+  font-weight: var(--fw-regular);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* remove animations for people who prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* -----------------------*/
+/* Utility classes        */
+/* ---------------------- */
+
+/* general--------------- */
+
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+.center {
+  justify-content: center;
+}
+.text-center {
+  text-align: center;
+}
+
+/* padding bottom */
+.pb-1 {
+  padding-bottom: 1rem;
+}
+.pb-2 {
+  padding-bottom: 2rem;
+}
+.pb-3 {
+  padding-bottom: 3rem;
+}
+/* specific--------------- */
+main {
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(var(--bg));
+  align-items: center;
+  overflow: hidden;
+}
+.wrapper {
+  flex-direction: column;
+  align-items: center;
+
+  --gap: 2rem;
+  padding: min(3rem, 5vw);
+}
+
+/* Review title */
+.review--title {
+  font-size: var(--fs-title);
+  letter-spacing: 0.05rem;
+}
+/* General rating */
+.review--general-rating {
+  --gap: 1.2rem;
+  padding: 1rem 0.5rem;
+}
+/* The carousel container */
+.carousel--container {
+  position: relative;
+  flex-grow: 1;
+}
+/* The carousel */
+.review--carousel {
+  max-width: 600px;
+  background-color: var(--white);
+  border-radius: 15px;
+  gap: 4rem;
+  position: relative;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* The slides */
+.review--carousel--slide {
+  width: 100%;
+  flex: 0 0 100%;
+  flex-direction: column;
+  padding: min(3rem, 5vw);
+  align-items: center;
+  scroll-snap-align: center;
+  height: 100%;
+}
+/* Dots */
+.review--carousel--dots {
+  --gap: 1rem;
+  position: absolute;
+  z-index: 10;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: gray;
+  opacity: 0.7;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+.dot.active {
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+}
+
+/* stars */
+.star:before {
+  content: "★";
+  display: inline-block;
+  color: gray;
+  opacity: 0.3;
+}
+.checked::before {
+  color: var(--orange);
+  opacity: 1;
+}
+
+/* Media queries for mobile version */
+@media (max-width: 600px) {
+  body {
+    --fs-normal: 1rem;
+  }
+  .wrapper {
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    padding-top: 5rem;
+  }
+  .review--carousel--dots {
+    bottom: 40px;
+    --gap: 3rem;
+  }
+  .dot {
+    width: 10px;
+    height: 10px;
+  }
+  .dot.active {
+    width: 14px;
+    height: 14px;
+  }
+  .review--carousel {
+    width: 100vw;
+    border-radius: 60px 60px 0 0;
+    height: 100%;
+    --gap: 3rem;
+  }
+  .review--carousel--slide {
+    padding: min(4rem, 10vw);
+  }
+}
